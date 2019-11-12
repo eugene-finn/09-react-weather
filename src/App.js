@@ -8,6 +8,8 @@ const PLACES = [
   { name: "Honolulu", zip: "96803" }
 ];
 
+const Favorite = []; // список избранных
+
 class WeatherDisplay extends Component {
   constructor() {
     super();
