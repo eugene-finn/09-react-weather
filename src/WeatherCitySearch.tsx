@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { } from './WeatherCitiesView'
+import { WeatherCitiesView } from './WeatherCitiesView'
 
 interface IProps {
   children: string[]
