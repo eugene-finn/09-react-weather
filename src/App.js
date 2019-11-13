@@ -1,3 +1,6 @@
+// это отсюда https://tproger.ru/translations/react-basic-weather-app/
+// с файлами WeatherCitiesView.tsx и WeatherCitySearch.tsx не связано
+
 import React, { Component } from "react";
 import "./App.css";
 
@@ -49,9 +52,7 @@ class WeatherDisplay extends Component {
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      activePlace: 0
-    };
+    const { activePlace } = this.state;
   }
   render() {
     const activePlace = this.state.activePlace;
