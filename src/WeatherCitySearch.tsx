@@ -17,7 +17,7 @@ export class WeatherCitySearch extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props)
     this.state = {
-      favotireCities: ['Budapes']
+      favotireCities: ['Budapest']
     };
   }
 }

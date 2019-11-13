@@ -4,6 +4,8 @@ import "./App.css";
 interface IProps {
   onClick: void
   city: string
+  event: any
+  favoriteCities: any
 }
 
 // export const City = ({ onClick, city = 'Tel Aviv' }: Props) =>
@@ -11,9 +13,7 @@ interface IProps {
 
 const favoriteCities = ['Budapest', 'London', 'Amsterdam', 'Tel-Aviv'];
 
-);
-
-export class WeatherCityView extends Component {
+export class WeatherCitiesView extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -23,26 +23,36 @@ export class WeatherCityView extends Component {
   }
 
   handleAddFavorite(event) {
-    alert('Отправленное имя: ' + this.state.value);
+    // предполагается этой кнопкой добавляем в массив новые города
+
     event.preventDefault();
+    this.setState(prevState => ({
+      favoriteCities: [...prevState.favoriteCities, this.state.value]
+    }))
+
   }
 
   render() {
     return (
-      <form onSubmit={this.handleAddFavorite}>
-        <label>
-          Choose a city:
+      <div>
+        <form onSubmit={this.handleAddFavorite}>
+          <label>
+            Choose a city:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
-        </label>
-        <input type="submit" value="Add" />
-      </form>
+          </label>
+          <input type="submit" value="Add" } />
+        </form>
+      </div>
 
       <div>
         const listCities = favoriteCities.map((city) =>
         <li>{city}</li>
-      </div>
-    );
-  }
+        );
+        </div>
+      }
+
+
+
 }
 
 
