@@ -2,66 +2,71 @@ import React, { Component } from "react";
 import "./App.css";
 
 interface IProps {
-  onClick: void
-  city: string
-  event: any
-  favoriteCities: any
+
 }
 
-// export const City = ({ onClick, city = 'Tel Aviv' }: Props) =>
-//   <img onClick={onClick} city={city} />
+interface IState {
+  value: any,
+  cities: any
+}
+const API_URL = 'http://samples.openweathermap.org/data/2.5/weather?q='
+const API_KEY = 'b6907d289e10d714a6e88b30761fae22'
 
-const favoriteCities = ['Budapest', 'London', 'Amsterdam', 'Tel-Aviv'];
-
-export class WeatherCitiesView extends Component {
-  constructor(props) {
-    super(props)
+export class WeatherCitiesView extends React.Component<IProps, IState> {
+  constructor(props: IProps) {
+    super(props);
     this.state = {
-      favoriteCities: ['Budapest', 'London', 'Amsterdam', 'Tel-Aviv']
-    }
-    this.handleAddFavorite = this.handleAddFavorite.bind(this);
+      value: '',
+      cities: []
+    };
+
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleAddFavorite(event) {
-    // предполагается этой кнопкой добавляем в массив новые города
+  componentDidMount() {
+    console.log('mounted!')
+    this.setState({
+      value: 'Moscow'
+    })
+  }
 
-    event.preventDefault();
-    this.setState(prevState => ({
-      favoriteCities: [...prevState.favoriteCities, this.state.value]
-    }))
+  handleChange(event: { target: { value: any; }; }) {
+    this.setState({ value: event.target.value });
+  }
 
+  handleSubmit(event: { preventDefault: () => void; }) {
+    if (this.state.cities.indexOf(this.state.value)) {
+      console.log('Такой город уже есть в списке')
+    } else {
+      this.setState({ cities: this.state.cities.concat(this.state.value) });
+      event.preventDefault();
+    }
+    console.log('Города ' + this.state.cities);
   }
 
   render() {
     return (
       <div>
-        <form onSubmit={this.handleAddFavorite}>
-          <label>
-            Choose a city:
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Город:
           <input type="text" value={this.state.value} onChange={this.handleChange} />
-          </label>
-          <input type="submit" value="Add" } />
-        </form>
-      </div>
-
-      <div>
-        const listCities = favoriteCities.map((city) =>
-        <li>{city}</li>
-        );
+            </label>
+            <input type="submit" value="Add" />
+          </form>
         </div>
-      }
+        <div>
+          {this.state.cities.map((item: any) => <ul key={item.id}>
+            <li>{item}</li>
 
-
-
+          </ul>)}
+        </div>
+      </div>
+    );
+  }
 }
 
 
-
-// ReactDOM.render(
-//   <ul key={city}>{listCities}</ul>,
-//   document.getElementById('root')
-// );
-
-
-
-export default WeatherCityView;
+export default WeatherCitiesView;
