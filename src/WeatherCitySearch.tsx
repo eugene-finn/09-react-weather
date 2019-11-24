@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
-import { } from './WeatherCitiesView'
+import { WeatherCitiesView } from './WeatherCitiesView'
 
 interface IProps {
   children: string[]
 }
 
 interface IState {
-  favotireCities: array[]
+  favotireCities: any
 }
 
 const API_URL = 'http://samples.openweathermap.org/data/2.5/weather?q='
@@ -17,7 +17,7 @@ export class WeatherCitySearch extends Component<IProps, IState> {
   constructor(props: IProps) {
     super(props)
     this.state = {
-      favotireCities: ['Budapes']
+      favotireCities: ['Budapest']
     };
   }
 }
